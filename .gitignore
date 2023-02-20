@@ -2,3 +2,4 @@ node_modules/
 dist/
 apiData/
 package-lock.json
+node_modules
