@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  db:
+    container_name: mongoDB
+    image: mongo:latest
+    restart: always
+    volumes:
+      - ./apiData:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=Api
+    ports:
+      - 27017:27017
+  api:
+    container_name: api
+    build:
+      context: .
+      target: development
+    restart: always
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 8080:8080
+    command: npm run dev
